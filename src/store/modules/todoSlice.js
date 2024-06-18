@@ -21,11 +21,17 @@ const todoSlice = createSlice({
         },
         deleteTodo(state,action){
             state.pop(todo => todo.id === action.payload)
+        },
+        editTodo(state,action){
+            const todo = state.find(todo => todo.id === action.payload.id);
+            if (todo) {
+                todo.text = action.payload.text;
+            }
         }
     }
 })
 
-const {addTodo, completeTodo, deleteTodo} = todoSlice.actions
+const {addTodo, completeTodo, deleteTodo, editTodo} = todoSlice.actions
 
-export {addTodo, completeTodo, deleteTodo}
+export {addTodo, completeTodo, deleteTodo, editTodo}
 export default todoSlice.reducer

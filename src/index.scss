@@ -16,7 +16,7 @@ body {
 }
 
 .addTodo{
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   .addTodo-input{
     border-radius: 60px;
     height: 60px;
@@ -25,10 +25,8 @@ body {
 }
 
 .todoText {
-  color: #56b2fe;
   font-size: 20px;
   font-family: 'yjsz'; 
-  font-weight: bold; 
 }
 
 .todoText-Complete {
@@ -40,8 +38,25 @@ body {
 .todo-item{
   display: flex;
   justify-content: space-between;
-}
-.delete-icon{
-  margin-right: 10px;
-  font-size: large;
+
+  .checkbox{
+    flex: 1;
+
+    .editInput{
+      font-size: 20px;
+    }  
+  }
+
+  .icon{
+    margin: 0 10px;
+    display: flex;
+
+    .delete-icon{
+      font-size: large;
+    }
+    .edit-icon{
+      margin-right: 20px;
+      font-size: large;
+    }
+  }
 }
