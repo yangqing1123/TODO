@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Button, Divider, Checkbox, Radio } from "antd";
+import { Button, Checkbox, Radio } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { completeAllTodo } from "../store/modules/todoSlice";
+import { completeAllTodo, clearCompleted } from "../store/modules/todoSlice";
 import { ActionCreators as UndoActionCreators } from "redux-undo";
 import { setVisibilityFilter } from "../store/modules/visibilityFilterSlice";
 
@@ -29,44 +29,59 @@ const Footer = () => {
   return (
     <div className="footer">
       {/* <Checkbox style={{ marginRight:'20px' }} checked={selectAll} ></Checkbox> */}
-      <Button
-        style={{ fontSize: "20px" }}
-        onClick={handleUndo}
-        disabled={!canUndo}
-      >
-        Undo
-      </Button>
-      <Button
-        style={{ fontSize: "20px", marginRight: "20px" }}
-        onClick={handleRedo}
-        disabled={!canRedo}
-      >
-        Redo
-      </Button>
-      <Radio.Group  defaultValue="large">
-        <Radio.Button
-          value="large"
-          onChange={() => dispatch(setVisibilityFilter("All"))}
+      <div className="undoRedo">
+        <Button
+          type="text"
+          style={{ fontSize: "20px" }}
+          onClick={handleUndo}
+          disabled={!canUndo}
+        >
+          Undo
+        </Button>
+        <Button
+          type="text"
+          style={{ fontSize: "20px", marginRight: "20px" }}
+          onClick={handleRedo}
+          disabled={!canRedo}
+        >
+          Redo
+        </Button>
+      </div>
+      <div className="visibilityFilter">
+        <Radio.Group defaultValue="large">
+          <Radio.Button
+            value="large"
+            onChange={() => dispatch(setVisibilityFilter("All"))}
+            style={{ fontSize: "20px" }}
+          >
+            All
+          </Radio.Button>
+          <Radio.Button
+            value="default"
+            onChange={() => dispatch(setVisibilityFilter("Active"))}
+            style={{ fontSize: "20px" }}
+          >
+            Active
+          </Radio.Button>
+          <Radio.Button
+            value="small"
+            onChange={() => dispatch(setVisibilityFilter("Completed"))}
+            style={{ fontSize: "20px" }}
+          >
+            Completed
+          </Radio.Button>
+        </Radio.Group>
+      </div>
+      <div className="clearCompleted">
+        <Button
+          danger
+          type="text"
+          onClick={() => dispatch(clearCompleted())}
           style={{ fontSize: "20px" }}
         >
-          All
-        </Radio.Button>
-        <Radio.Button
-          value="default"
-          onChange={() => dispatch(setVisibilityFilter("Active"))}
-          style={{ fontSize: "20px" }}
-        >
-          Active
-        </Radio.Button>
-        <Radio.Button
-          value="small"
-          onChange={() => dispatch(setVisibilityFilter("Completed"))}
-          style={{ fontSize: "20px" }}
-        >
-          Completed
-        </Radio.Button>
-      </Radio.Group>
-      <Divider />
+          Clear completed
+        </Button>
+      </div>
     </div>
   );
 };

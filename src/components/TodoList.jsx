@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Input, List } from "antd";
+import { Input, Divider } from "antd";
 import TodoItem from "./TodoItem";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodo } from "../store/modules/todoSlice";
@@ -14,8 +14,9 @@ const TodoList = () => {
 
   const handleAddTodo = (e) => {
     if (inputValue.trim().length !== 0) {
+      const newId = todos.length > 0 ? todos[todos.length - 1].id + 1 : 0; 
       const newTodo = {
-        id: todos.length ,
+        id: newId,
         text: inputValue,
         completed: false,
       };
@@ -23,7 +24,6 @@ const TodoList = () => {
       setInputValue("");
     }
   };
-
   const getVisibleTodos = (todos, filter) => {
     switch (filter) {
       case 'All':
@@ -58,6 +58,7 @@ const TodoList = () => {
         ))}
       </div>
       <Footer/>
+      <Divider />
     </div>
   );
 };

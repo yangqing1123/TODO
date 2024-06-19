@@ -7,7 +7,7 @@ body {
   text-align: center;
 
   h1 {
-    font-size: 3em; 
+    font-size: 5em; 
     color: #56b2fe; 
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); 
     margin-bottom: 30px; 
@@ -16,10 +16,11 @@ body {
 }
 
 .addTodo{
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   .addTodo-input{
     border-radius: 60px;
-    height: 60px;
+    height: 70px;
+    font-size: 20px;
     border-width: 2px;
   }
 }
@@ -63,4 +64,6 @@ body {
 
 .footer{
   margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
 }
