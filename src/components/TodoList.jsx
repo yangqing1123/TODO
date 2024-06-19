@@ -3,10 +3,11 @@ import { Input, List } from "antd";
 import TodoItem from "./TodoItem";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodo } from "../store/modules/todoSlice";
+import Footer from "./Footer";
 
 const TodoList = () => {
   const [inputValue, setInputValue] = useState("");
-  const todos = useSelector((state) => state.todo);
+  const todos = useSelector((state) => state.todo.present);
 
   const dispatch = useDispatch();
 
@@ -40,6 +41,7 @@ const TodoList = () => {
           <TodoItem key={todo.id} todo={todo}/>
         ))}
       </div>
+      <Footer/>
     </div>
   );
 };

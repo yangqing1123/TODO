@@ -1,10 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import undoable, { includeAction } from 'redux-undo';
 
-const initialState= [{
-    id: 0,
-    text: '吃饭',
-    completed: false
-}]
+const initialState= []
 
 const todoSlice = createSlice({
     name:'todo',
@@ -27,11 +24,15 @@ const todoSlice = createSlice({
             if (todo) {
                 todo.text = action.payload.text;
             }
-        }
+        },
+        completeAllTodo(state){
+            
+        },
     }
 })
 
-const {addTodo, completeTodo, deleteTodo, editTodo} = todoSlice.actions
+const {addTodo, completeTodo, deleteTodo, editTodo, completeAllTodo} = todoSlice.actions
+const undoableTodoReducer = undoable(todoSlice.reducer);
 
-export {addTodo, completeTodo, deleteTodo, editTodo}
-export default todoSlice.reducer
+export {addTodo, completeTodo, deleteTodo, editTodo, completeAllTodo}
+export default undoableTodoReducer
