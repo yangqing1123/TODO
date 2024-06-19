@@ -6,7 +6,7 @@ import { DeleteTwoTone, EditTwoTone } from "@ant-design/icons";
 
 const TodoItem = (props) => {
   const { todo } = props;
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(todo.completed);
   const [isEditing, setIsEditing] = useState(false);
   const [editedText, setEditedText] = useState(todo.text);
 

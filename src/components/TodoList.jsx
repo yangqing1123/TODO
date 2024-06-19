@@ -8,6 +8,7 @@ import Footer from "./Footer";
 const TodoList = () => {
   const [inputValue, setInputValue] = useState("");
   const todos = useSelector((state) => state.todo.present);
+  const visibilityFilter = useSelector((state) => state.visibilityFilter);
 
   const dispatch = useDispatch();
 
@@ -23,6 +24,21 @@ const TodoList = () => {
     }
   };
 
+  const getVisibleTodos = (todos, filter) => {
+    switch (filter) {
+      case 'All':
+        return todos
+      case 'Completed':
+        return todos.filter(t => t.completed)
+      case 'Active':
+        return todos.filter(t => !t.completed)
+      default:
+        return todos;  
+    }
+  }
+
+  const visibleTodos = getVisibleTodos(todos,visibilityFilter)
+
 
   return (
     <div className="todo-list">
@@ -37,7 +53,7 @@ const TodoList = () => {
         />
       </div>
       <div className="todos">
-        {todos.map((todo)=>(
+        {visibleTodos.map((todo)=>(
           <TodoItem key={todo.id} todo={todo}/>
         ))}
       </div>

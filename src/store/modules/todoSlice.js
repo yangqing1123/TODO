@@ -26,7 +26,10 @@ const todoSlice = createSlice({
             }
         },
         completeAllTodo(state){
-            
+            const allCompleted = state.every(todo => todo.completed); 
+            state.forEach(todo => {
+              todo.completed = !allCompleted; 
+            });
         },
     }
 })
